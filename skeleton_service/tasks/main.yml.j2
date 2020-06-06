@@ -1,0 +1,30 @@
+---
+# tasks file for {{ role_name }}
+- name: Collect facts about system services.
+  service_facts:
+
+- name: Debug system services.
+  debug:
+    var: services
+    verbosity: 2
+
+- name: Ensure "{{ '{{' }} {{ role_name }}_package_name {{ '}}' }}" package is installed.
+  package:
+    name: "{{ '{{' }} {{ role_name }}_package_name {{ '}}' }}"
+    state: present
+  notify: restart "{{ '{{' }} {{ role_name }}_service_name {{ '}}' }}"
+
+- name: Enable port "{{ '{{' }} {{ role_name }}_port {{ '}}' }}" in firewalld.
+  firewalld:
+    port: "{{ '{{' }} {{ role_name }}_port {{ '}}' }}/tcp"
+    permanent: yes
+    immediate: true
+    state: enabled
+  when: "'firewalld.service' in services and ({{ role_name }}_port|length > 0)"
+
+- name: Ensure "{{ '{{' }} {{ role_name }}_service_name {{ '}}' }}" is started and enabled on boot.
+  service:
+    name: "{{ '{{' }} {{ role_name }}_service_name {{ '}}' }}"
+    state: "{{ '{{' }} {{ role_name }}_service_state {{ '}}' }}"
+    enabled: "{{ '{{' }} {{ role_name }}_service_enabled {{ '}}' }}"
+
