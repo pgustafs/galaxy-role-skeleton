@@ -1,9 +1,9 @@
 galaxy_info:
-  role_name: {{ role_name }}
+  role_name: {{ role_name | replace('ansible-role-', '') }}
   author: Peter Gustafsson
   description: My Description
   license: MIT
-  min_ansible_version: 2.5
+  min_ansible_version: 2.9
   platforms:
     - name: EL
       versions:
