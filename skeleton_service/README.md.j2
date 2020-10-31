@@ -6,7 +6,7 @@ Basic description for {{ role_name }}
 Requirements
 ------------
 
-Ansible 2.5 or higher
+Ansible 2.9 or higher
 
 Red Hat Enterprise Linux 8 or equivalent
 
@@ -32,7 +32,7 @@ Example Playbook
 ```yaml
 - hosts: {{ role_name }}-servers
   roles:
-    - role: rhnordics.{{ role_name }}
+    - role: {{ role_name }}
 ```
 
 License
