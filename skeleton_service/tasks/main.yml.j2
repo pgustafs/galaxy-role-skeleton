@@ -1,5 +1,5 @@
 ---
-# tasks file for {{ role_name }}
+# tasks file for {{ role_name | replace('ansible-role-', '') }}
 - name: Collect facts about system services.
   service_facts:
 
@@ -8,23 +8,23 @@
     var: services
     verbosity: 2
 
-- name: Ensure "{{ '{{' }} {{ role_name }}_package_name {{ '}}' }}" package is installed.
+- name: Ensure "{{ '{{' }} {{ role_name | replace('ansible-role-', '') }}_package_name {{ '}}' }}" package is installed.
   package:
-    name: "{{ '{{' }} {{ role_name }}_package_name {{ '}}' }}"
+    name: "{{ '{{' }} {{ role_name | replace('ansible-role-', '') }}_package_name {{ '}}' }}"
     state: present
-  notify: restart "{{ '{{' }} {{ role_name }}_service_name {{ '}}' }}"
+  notify: restart "{{ '{{' }} {{ role_name | replace('ansible-role-', '') }}_service_name {{ '}}' }}"
 
-- name: Enable port "{{ '{{' }} {{ role_name }}_port {{ '}}' }}" in firewalld.
+- name: Enable port "{{ '{{' }} {{ role_name | replace('ansible-role-', '') }}_port {{ '}}' }}" in firewalld.
   firewalld:
-    port: "{{ '{{' }} {{ role_name }}_port {{ '}}' }}/tcp"
+    port: "{{ '{{' }} {{ role_name | replace('ansible-role-', '') }}_port {{ '}}' }}/tcp"
     permanent: yes
     immediate: true
     state: enabled
-  when: "'firewalld.service' in services and ({{ role_name }}_port|length > 0)"
+  when: "'firewalld.service' in services and ({{ role_name | replace('ansible-role-', '') }}_port|length > 0)"
 
-- name: Ensure "{{ '{{' }} {{ role_name }}_service_name {{ '}}' }}" is started and enabled on boot.
+- name: Ensure "{{ '{{' }} {{ role_name | replace('ansible-role-', '') }}_service_name {{ '}}' }}" is started and enabled on boot.
   service:
-    name: "{{ '{{' }} {{ role_name }}_service_name {{ '}}' }}"
-    state: "{{ '{{' }} {{ role_name }}_service_state {{ '}}' }}"
-    enabled: "{{ '{{' }} {{ role_name }}_service_enabled {{ '}}' }}"
+    name: "{{ '{{' }} {{ role_name | replace('ansible-role-', '') }}_service_name {{ '}}' }}"
+    state: "{{ '{{' }} {{ role_name | replace('ansible-role-', '') }}_service_state {{ '}}' }}"
+    enabled: "{{ '{{' }} {{ role_name | replace('ansible-role-', '') }}_service_enabled {{ '}}' }}"
 
