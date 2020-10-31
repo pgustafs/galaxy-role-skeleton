@@ -1,6 +1,6 @@
 ---
 # Handlers file for {{ role_name }}
-- name: restart "{{ '{{' }} {{ role_name }}_service_name {{ '}}' }}"
+- name: restart "{{ '{{' }} {{ role_name | replace('ansible-role-', '') }}_service_name {{ '}}' }}"
   service:
     name: rsyslog
-    state: "{{ '{{' }} {{ role_name }}_restarted_state {{ '}}' }}"
+    state: "{{ '{{' }} {{ role_name | replace('ansible-role-', '') }}_restarted_state {{ '}}' }}"
