@@ -1,8 +1,8 @@
 ---
 # defaults file for {{ role_name }}
-{{ role_name }}_package_name:
-{{ role_name }}_service_name:
-{{ role_name }}_service_state: started
-{{ role_name }}_service_enabled: true
-{{ role_name }}_restarted_state: restarted
-{{ role_name }}_port:
+{{ role_name | replace('ansible-role-', '') }}_package_name:
+{{ role_name | replace('ansible-role-', '') }}_service_name:
+{{ role_name | replace('ansible-role-', '') }}_service_state: started
+{{ role_name | replace('ansible-role-', '') }}_service_enabled: true
+{{ role_name | replace('ansible-role-', '') }}_restarted_state: restarted
+{{ role_name | replace('ansible-role-', '') }}_port:
