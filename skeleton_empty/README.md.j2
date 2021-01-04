@@ -1,12 +1,12 @@
-{{ role_name }}
+{{ role_name | replace('ansible-role-', '') }}
 ===========
 
-Basic description for {{ role_name }}
+Basic description for {{ role_name | replace('ansible-role-', '') }}
 
 Requirements
 ------------
 
-Ansible 2.5 or higher
+Ansible 2.9 or higher
 
 Red Hat Enterprise Linux 8 or equivalent
 
@@ -19,7 +19,7 @@ Currently the following variables are supported:
 
 ### General
 
-* `{{ role_name }}_var_name` - var\_name description
+* `{{ role_name | replace('ansible-role-', '') }}_var_name` - var\_name description
 
 Dependencies
 ------------
@@ -30,9 +30,9 @@ Example Playbook
 ----------------
 
 ```yaml
-- hosts: {{ role_name }}-servers
+- hosts: {{ role_name | replace('ansible-role-', '') }}-servers
   roles:
-    - role: rhnordics.{{ role_name }}
+    - role: {{ role_name | replace('ansible-role-', '') }}
 ```
 
 License
